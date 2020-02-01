@@ -1,6 +1,7 @@
 function setup() {}
 
 function draw() {
+        text("this egg and ham were havign a lovely day and then along came Sam-I-Am and turned the GREEN :(")
         var canvas = document.getElementById('canvas');
         if (canvas.getContext) {
                 var ctx = canvas.getContext('2d');

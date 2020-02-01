@@ -1,13 +1,13 @@
 function setup() {}
 
 function draw() {
-        text("this egg and ham were havign a lovely day and then along came Sam-I-Am and turned the GREEN :(")
+        text("this egg and ham were having a lovely day and then along came Sam-I-Am and turned the GREEN :(")
         var canvas = document.getElementById('canvas');
         if (canvas.getContext) {
                 var ctx = canvas.getContext('2d');
                 ctx.beginPath();
                 ctx.rect(0, 0, 800, 800);
-                ctx.fillStyle = "#8888ff";   
+                ctx.fillStyle = "#8888ff";
                 ctx.fill();
                 ctx.stroke();
 

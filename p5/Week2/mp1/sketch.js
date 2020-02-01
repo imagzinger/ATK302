@@ -7,7 +7,7 @@ function draw() {
                 var ctx = canvas.getContext('2d');
                 ctx.beginPath();
                 ctx.rect(0, 0, 800, 800);
-                ctx.fillStyle = "#8888ff";
+                ctx.fillStyle = "#8888ff";   
                 ctx.fill();
                 ctx.stroke();
 

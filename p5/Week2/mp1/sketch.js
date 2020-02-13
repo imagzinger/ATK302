@@ -14,7 +14,7 @@ function draw() {
                 ctx.beginPath();
                 ctx.lineWidth = "0.1";
                 //ctx.strokeStyle = "black";
-                ctx.rect(600,260,80,40)
+                ctx.rect(600,260,80,40);
                 ctx.fillStyle = "#fffdd0";
                 ctx.fill();
                 ctx.stroke();

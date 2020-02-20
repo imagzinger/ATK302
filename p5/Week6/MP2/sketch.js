@@ -4,6 +4,8 @@ var x = 100;
 var xspid = 5;
 var yspid = 3.2;
 
+var timer = 3600;
+
 function setup()
 {
         createCanvas(800,800);
@@ -12,13 +14,26 @@ function setup()
 
 function draw()
 {
+        timer -= 1/60;
+        if ( x >750 || x <50||y >750 || y <50 )
+        {
+                        state --;
+                        x = width/2;
+                        y = height/2;
+        }
+        if(timer == 0)
+        {
+                state ++;
+        }
         switch(state)
         {
 
                 case 0:
-                        titleScreen();
+                        youLoseScreen();
                         break;
                 case 1:
+                        var xspid = 5;
+                        var yspid = 3.2;
                         screenSaver();
                         break;
                 case 2:
@@ -28,6 +43,7 @@ function draw()
                         drawWithCircle();
                         break;
         }
+        if( timer ==)
 }
 
 function mousePressed()
@@ -39,10 +55,10 @@ function mousePressed()
         }
 }
 
-function titleScreen()
+function youLoseScreen()
 {
         background('red');
-        text("TITLE SCREEN ", 400,400);
+        text("YOU SUCK! HAHA", 600,600);
 }
 
 function screenSaver()
@@ -53,14 +69,46 @@ function screenSaver()
         ellipse(x, y, 100, 100);
 
 
-        if(y> height|| y< 0)
+/*if(y> height|| y< 0)
                 yspid = yspid*-1;
         y = y + yspid;
         if(x> width|| x< 0)
                 xspid = xspid*-1;
-        x = x - xspid;
+                x = x - xspid;*/
 
 }
+
+
+window.addEventListener("keydown", function (event) {
+  if (event.defaultPrevented) {
+    return; // Do nothing if the event was already processed
+  }
+
+  switch (event.key) {
+    case "ArrowDown":
+      // code for "down arrow" key press.
+      break;
+    case "ArrowUp":
+      // code for "up arrow" key press.
+      break;
+    case "ArrowLeft":
+      // code for "left arrow" key press.
+      break;
+    case "ArrowRight":
+      // code for "right arrow" key press.
+      break;
+    default:
+      return; // Quit when this doesn't handle the key event.
+  }
+
+  // Cancel the default action to avoid it being handled twice
+  event.preventDefault();
+}, true);
+// the last option dispatches the event to the listener first,
+// then dispatches event to window
+
+
+
 
 function backgroundChanger()
 {

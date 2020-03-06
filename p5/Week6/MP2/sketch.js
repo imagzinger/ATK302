@@ -1,13 +1,13 @@
-var state = 1;
+var state = 8;
 var y = 400;
 var x = 400;
 var xspid = 5;
 var yspid = 3.2;
 var s = 100;
 var loseTimer = 5;
-var G1timer = 10;
-var G2timer = 10;
-var G3timer = 10;
+var G1timer = 20;
+var G2timer = 20;
+var G3timer = 20;
 var infoTimer = 5;
 var pongx = 0;
 var pongy = 400;
@@ -86,6 +86,13 @@ function draw()
                 case 7:
                         WinScreen();
                         break;
+                case 8:
+                        background('black');
+                        text('There are 3 games. You must be able to play all of them for 20 seconds to win. Each game has its own intructions displayed for 5 seconds. Click the mouse when you are ready!:)',250,200,300,300);
+                        if (mouseIsPressed) {
+                                state = 1;
+                        }
+                        break;
         }
 }
 
@@ -99,7 +106,7 @@ function LoseScreen()
         //console.log(lives);
         if(loseTimer <=0){
                 velocity = 0;
-                state = 1;
+                state = 8;
                 lives = 4;
                 xspid = 5;
                 yspid = 3.2;

@@ -8,6 +8,7 @@ var timer = 30;
 var gulp;
 var gameMusic;
 var flySpeed = 800;
+var tryagain;
 
 function setup() {
         createCanvas(1000,1000);

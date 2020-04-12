@@ -34,7 +34,10 @@ function Car()
                 stroke(this.r-outline_offset,this.g-outline_offset,this.b-outline_offset);
                 strokeWeight(4);
                 fill(this.r,this.g,this.b);
-                rect(this.pos.x,this.pos.y,this.size,this.size);
+                ellipse(this.pos.x,this.pos.y,this.size,this.size);
+                fill(255,255,255,150);
+                ellipse(this.pos.x+this.size*0.7,this.pos.y+this.size*0.7,this.size/2,this.size/2);
+                ellipse(this.pos.x-this.size*0.7,this.pos.y+this.size*0.7,this.size/2,this.size/2);
         }
         this.drive = function()
         {

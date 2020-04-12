@@ -5,9 +5,13 @@ var outline_offset = 50;
 var state = 0;
 var points = 0
 var timer = 30;
+var gulp;
+var gameMusic;
+var flySpeed = 800;
 
 function setup() {
         createCanvas(1000,1000);
+        //preload();
 
         for(var i = 0; i< num_cars; i++)
         {
@@ -17,12 +21,20 @@ function setup() {
         textAlign(CENTER);
 }
 
+function preload()
+{
+        gulp = loadSound("./Assets/Gulp1.mp3");
+        gameMusic = loadSound("./Assets/melodyloops-spring-flower.mp3");
+        //skate = loadSound("assets/skate.mp3");
+}
+
 function draw() {
 
         switch(state)
         {
                 case 0:
                         menu();
+
                         break;
                 case 1:
                         game();
@@ -90,6 +102,8 @@ function mouseClicked()
                 if(mouseX > width/2-150 && mouseX < width/2+150 && mouseY > width/2-165 && mouseY < width/2+135)
                 {
                         state++;
+                        gameMusic.stop();
+                        gameMusic.play();
                 }
         }
         else if( state != 1)
@@ -101,13 +115,26 @@ function mouseClicked()
 function game()
 {
         background('lightblue');
+
         for(var i = 0; i< cars.length; i++)
         {
+                var vx = (cars[i].pos.x-frooggy.pos.x);
+                var vy = (cars[i].pos.y-frooggy.pos.y);
                 cars[i].display();
+                if(cars[i].pos.dist(frooggy.pos) < frooggy.radius * 3)
+                {
+                        cars[i].vel = createVector((flySpeed* vx/abs(vx))/(abs(vx)+abs(vy)),(flySpeed* vy/abs(vy))/(abs(vy)+abs(vx)) );
+                }
+                else
+                {
+                        cars[i].vel = createVector(random(-3,3),random(-3,3));
+                }
                 cars[i].drive();
+                //this.vel = createVector(this.pos.x-frooggy.pos.x, this.pos.y-frooggy.pos.y);
                 if(cars[i].pos.dist(frooggy.pos) < frooggy.radius)
                 {
-                        points+=cars[i].size;
+                        points += cars[i].size;
+                        gulp.play();
                         cars.splice(i,1);
                 }
         }
@@ -193,18 +220,26 @@ function Frog()
         this.moveUp = function()
         {
                 this.pos.y -= this.vel;
+                if(this.pos.y < -100)
+                        this.pos.y = -100;
         }
         this.moveDown = function()
         {
                 this.pos.y += this.vel;
+                if(this.pos.y > height + 100)
+                        this.pos.y = height + 100;
         }
         this.moveRight = function()
         {
                 this.pos.x += this.vel;
+                if(this.pos.x > height + 100)
+                        this.pos.x = -100;
         }
         this.moveLeft = function()
         {
                 this.pos.x -= this.vel;
+                if(this.pos.x < -100)
+                        this.pos.x = width + 100;
         }
 }
 
@@ -212,16 +247,31 @@ function Car()
 {
         this.pos = createVector(random(width),random(height));
         this.vel = createVector(random(-3,3),random(-3,3));
-        this.size = abs(randomGaussian(20,20))+5;
-        this.r = random(255);
-        this.g = random(255);
-        this.b = random(255);
+        this.size = abs(randomGaussian(21,10));
+        this.r = random(0);
+        this.g = random(0);
+        this.b = random(0);
+
         this.display = function()
         {
+                this.vel = createVector(this.pos.x-frooggy.pos.x, this.pos.y-frooggy.pos.y);
                 stroke(this.r-outline_offset,this.g-outline_offset,this.b-outline_offset);
                 strokeWeight(4);
                 fill(this.r,this.g,this.b);
-                rect(this.pos.x,this.pos.y,this.size,this.size,this.size/8);
+                ellipse(this.pos.x,this.pos.y,this.size,this.size/1.2);
+                //fill(255,255,255,100);
+                strokeWeight(0);
+
+                if(timer % 1 == 0)
+                {
+                        fill(0,0,0,0);
+                }
+                else {
+                        fill(255,255,255,150);
+                }
+                ellipse(this.pos.x-this.size*0.5,this.pos.y-this.size*0.5,this.size/2,this.size/2.5);
+                ellipse(this.pos.x+this.size*0.5,this.pos.y-this.size*0.5,this.size/2,this.size/2.5);
+
         }
         this.drive = function()
         {
@@ -229,30 +279,22 @@ function Car()
                 if(this.pos.x > width+this.size)
                 {
                         this.pos.x = -1*this.size;
-                        this.r = random(255);
-                        this.g = random(255);
-                        this.b = random(255);
                 }
                 if(this.pos.x < -1 * this.size)
                 {
                         this.pos.x = width + this.size;
-                        this.r = random(255);
-                        this.g = random(255);
-                        this.b = random(255);
                 }
                 if(this.pos.y > height+this.size)
                 {
                         this.pos.y = -1*this.size;
-                        this.r = random(255);
-                        this.g = random(255);
-                        this.b = random(255);
                 }
                 if(this.pos.y < -1*this.size)
                 {
                         this.pos.y = height + this.size;
-                        this.r = random(255);
-                        this.g = random(255);
-                        this.b = random(255);
                 }
         }
+}
+
+function touchStarted() {
+  getAudioContext().resume();
 }

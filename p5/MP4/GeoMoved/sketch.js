@@ -1,6 +1,6 @@
 var num;
 var distance;
-
+var scale = 750;
 var locationData;
 
 function preload() {
@@ -36,18 +36,18 @@ function positionPing(position) {
 function YouMoved(distance) {
 	if (distance > 20 / 500)
 		text("okay yeah stop before you kill your self....", 10, 220);
-	else if (distance > 15 / 500)
+	else if (distance > 15 / scale)
 		text("Woow.. thats alot...", 10, 220);
-	else if (distance > 10 / 500)
+	else if (distance > 10 / scale)
 		text("nice!", 10, 220);
-	else if (distance > 5 / 500)
+	else if (distance > 5 / scale)
 		text("heeeyyy... nice your getting somewhere", 10, 220);
-	else if (distance > 3 / 500)
+	else if (distance > 3 / scale)
 		text("okay, okay.. but dont stop now... jeez", 10, 220);
-	else if (distance > 1 / 500)
+	else if (distance > 1 / scale)
 		text("ehh... you should probably keep going...", 10, 220);
-	else if (distance > 1 / 1000)
+	else if (distance > 0.5 / scale)
 		text("Wow... congrats you moved...", 10, 220);
-	else if (distance < 1 / 1000)
+	else if (distance < 0.5 / scale)
 		text("k... you are at your starting point...how about you try moving", 10, 220);
 }

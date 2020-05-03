@@ -2,7 +2,7 @@
 Make sure you turn on orientation lock on your iPhone or Android device. */
 
 var alpha, beta, gamma; // orientation data
-var bunnyImage;
+var coopieImage;
 var xPosition = 0;
 var yPosition = 0;
 var x = 0; // acceleration data
@@ -18,7 +18,7 @@ function setup() {
 	beta = 0;
 	gamma = 0;
 
-	bunnyImage = loadImage("assets/bunny.jpg");
+	coopieImage = loadImage("assets/cooper.jpg");
 	imageMode(CENTER);
 	rectMode(CENTER);
 
@@ -40,7 +40,7 @@ function draw() {
 
 	rotate(radians(alpha)); // using alpha in here so it doesn't feel bad
 
-	image(bunnyImage, 0, 0, 500, 500);
+	image(coopieImage, 0, 0, 500, 500);
 	//  	rect(0, 0, 100, 100) ;
 	pop();
 
@@ -65,9 +65,9 @@ function draw() {
 	// MORE DECORATIONS - write that pretty ATK type on top.
 	fill('white');
 	noStroke();
-	textSize(300);
+	textSize(100);
 	textAlign(CENTER);
-	text("atk", width / 2, height / 2);
+	text("cooper", width / 2, height / 2);
 
 }
 

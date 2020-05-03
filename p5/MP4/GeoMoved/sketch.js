@@ -27,27 +27,27 @@ function positionPing(position) {
 	text("number of updates " + num, 10, 140);
 
 	distance = calcGeoDistance(locationData.latitude, locationData.longitude, position.latitude, position.longitude, 'mi');
-	text("you have moved " + (distance * scale), 10, 190);
+	text("you have moved " + distance, 10, 190);
 	YouMoved(distance * scale);
 
 
 }
 
 function YouMoved(distance) {
-	if (distance > 20)
+	if (distance > 20 / scale)
 		text("okay yeah stop before you kill your self....", 10, 220);
-	else if (distance > 15)
+	else if (distance > 15 / scale)
 		text("Woow.. thats alot...", 10, 220);
-	else if (distance > 10)
+	else if (distance > 10 / scale)
 		text("nice!", 10, 220);
-	else if (distance > 5)
+	else if (distance > 5 / scale)
 		text("heeeyyy... nice your getting somewhere", 10, 220);
-	else if (distance > 3)
+	else if (distance > 3 / scale)
 		text("okay, okay.. but dont stop now... jeez", 10, 220);
-	else if (distance > 1)
+	else if (distance > 1 / scale)
 		text("ehh... you should probably keep going...", 10, 220);
-	else if (distance > 0.5)
+	else if (distance > 0.5 / scale)
 		text("Wow... congrats you moved...", 10, 220);
-	else if (distance < 0.5)
+	else if (distance < 0.5 / scale)
 		text("k... you are at your starting point...how about you try moving", 10, 220);
 }

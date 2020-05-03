@@ -1,6 +1,6 @@
 var num;
 var distance;
-var scale = 750;
+var scale = 1000;
 var locationData;
 
 function preload() {

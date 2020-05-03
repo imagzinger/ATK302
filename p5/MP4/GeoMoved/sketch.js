@@ -27,7 +27,7 @@ function positionPing(position) {
 	text("number of updates " + num, 10, 140);
 
 	distance = calcGeoDistance(locationData.latitude, locationData.longitude, position.latitude, position.longitude, 'mi');
-	text("you have moved " + distance * scale, 10, 190);
+	text("you have moved " + (distance * scale), 10, 190);
 	YouMoved(distance * scale);
 
 

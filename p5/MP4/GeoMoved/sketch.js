@@ -34,7 +34,7 @@ function positionPing(position) {
 }
 
 function YouMoved(distance) {
-	if (distance > 20 / 500)
+	if (distance > 20 / scale)
 		text("okay yeah stop before you kill your self....", 10, 220);
 	else if (distance > 15 / scale)
 		text("Woow.. thats alot...", 10, 220);

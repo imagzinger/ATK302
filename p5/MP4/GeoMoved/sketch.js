@@ -1,6 +1,6 @@
 var num;
 var distance;
-var scale = 1000;
+var scale = 1500;
 var locationData;
 
 function preload() {
@@ -9,7 +9,7 @@ function preload() {
 
 function setup() {
 	num = 0;
-	intervalCurrentPosition(positionPing, 5000);
+	intervalCurrentPosition(positionPing, 10000);
 	createCanvas(displayWidth, displayHeight);
 }
 
